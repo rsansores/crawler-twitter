@@ -1,0 +1,36 @@
+@(words: List[Word])
+
+@main("Crawler Twitter - By Ricardo Sansores") {
+
+    <script type='text/javascript' src='@routes.Assets.at("javascripts/index.min.js")'></script>
+    
+    <form method="post" autocomplete="on">
+      Date (dd/mm/yyyy): <input type="text" name="date"><br>
+      <input type="submit">
+    </form>
+    <div id="wordcloud" class="wordcloud">
+        @for(word <- words){
+        	<span data-weight="@word.word_count">@word.word</span>
+        }
+	</div>
+	<script>
+		$(document).ready(function(){
+			$("#wordcloud").awesomeCloud({
+				"size" : {
+					"grid" : 32,
+					"normalize" : true
+				},
+				"options" : {
+					"color" : "random-dark",
+					"rotationRatio" : 0.2,
+					"printMultiplier" : 3,
+					"sort" : "highest"
+				},
+				"font" : "'Times New Roman', Times, serif",
+				"shape" : "square"
+			});
+			
+		});
+	</script>
+
+}
